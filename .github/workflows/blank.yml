@@ -1,0 +1,23 @@
+name: Check for index.html
+
+on:
+  push:
+    branches:
+      - main  # Adjust the branch name as needed
+
+jobs:
+  check-index-html:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Check for index.html
+      run: |
+        if [ -e index.html ]; then
+          echo "index.html found in the repository."
+        else
+          echo "Error: index.html not found in the repository."
+          exit 1
+        fi
